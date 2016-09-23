@@ -10,4 +10,4 @@ RUN ./configure && make
 RUN make install
 RUN curl 'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > chnroute.txt
 RUN rm /usr/local/share/chnroute.txt|mv ./chnroute.txt /usr/local/share/
-ENTRYPOINT chinadns -m -c /usr/local/share/chnroute.txt -s 223.5.5.5,223.6.6.6,8.8.8.8,8.8.4.4
+ENTRYPOINT chinadns -m -c /usr/local/share/chnroute.txt
