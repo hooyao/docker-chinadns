@@ -1,8 +1,9 @@
-FROM buildpack-deps
+FROM alpine:3.6
 WORKDIR /home
 EXPOSE 53/udp
 ENV version "1.3.2"
 ENV pkgName "chinadns-"${version}
+RUN apk update && apk add build-base gcc abuild binutils binutils-doc gcc-doc
 RUN wget https://github.com/shadowsocks/ChinaDNS/releases/download/1.3.2/${pkgName}.tar.gz
 RUN tar -zxf ${pkgName}.tar.gz
 WORKDIR /home/${pkgName}
